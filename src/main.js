@@ -442,7 +442,7 @@ const getShowmoreButton = () => {
   return `<button class="load-more" type="button">load more</button>`;
 };
 
-let render = (node, parent, where = `beforeEnd`) => {
+const render = (node, parent, where = `beforeEnd`) => {
   parent.insertAdjacentHTML(where, node);
 };
 // Список задач;
