@@ -1,8 +1,6 @@
 'use strict';
-// Откройте файл src/main.js и опишите в нём функции, возвращающие разметку элементов страницы (далее «компоненты»). Вам потребуются функции для получения разметки следующих компонентов:
-// Меню;
-const getMenuComponent = () => {
-  return `<section class="control__btn-wrap">
+
+const getMenuComponent = () => `<section class="control__btn-wrap">
   <input
     type="radio"
     name="control"
@@ -26,9 +24,7 @@ const getMenuComponent = () => {
   />
   <label for="control__statistic" class="control__label">STATISTICS</label>
 </section>`;
-};
 
-// Фильтры;
 const getFiltersComponent = () => {
   return `<section class="main__filter filter container">
   <input
@@ -100,9 +96,7 @@ const getFiltersComponent = () => {
 </section>`;
 };
 
-const getBoardComponent = () => {
-  return `
-<section class="board container">
+const getBoardComponent = () => `<section class="board container">
   <div class="board__filter-list">
     <a href="#" class="board__filter">SORT BY DEFAULT</a>
     <a href="#" class="board__filter">SORT BY DATE up</a>
@@ -110,10 +104,8 @@ const getBoardComponent = () => {
   </div>
   <div class="board__tasks"></div>
 </section>`;
-};
 
-const getTaskTemplate = () => {
-  return `<article class="card card--black">
+const getTaskHTML = () => `<article class="card card--black">
   <div class="card__form">
     <div class="card__inner">
       <div class="card__control">
@@ -178,10 +170,8 @@ const getTaskTemplate = () => {
     </div>
   </div>
 </article>`;
-};
 
-const getTaskEditTemplate = () => {
-  return `<article class="card card--edit card--yellow card--repeat">
+const getTaskEditHTML = () => `<article class="card card--edit card--yellow card--repeat">
   <form class="card__form" method="get">
     <div class="card__inner">
       <div class="card__color-bar">
@@ -435,26 +425,13 @@ const getTaskEditTemplate = () => {
       </div>
     </div>
   </form>
-  </article>`;
+</article>`;
+
+const getShowmoreButtonHTML = () => `<button class="load-more" type="button">load more</button>`;
+
+const render = (html, target, where = `beforeend`) => {
+  target.insertAdjacentHTML(where, html);
 };
-
-const getShowmoreButton = () => {
-  return `<button class="load-more" type="button">load more</button>`;
-};
-
-const render = (node, parent, where = `beforeEnd`) => {
-  parent.insertAdjacentHTML(where, node);
-};
-// Список задач;
-// Карточка задачи;
-// Форма создания/редактирования задачи (используется одна форма);
-// Кнопка «Load more».
-
-// В файле src/main.js опишите функцию для рендеринга компонентов. Спецификация функции проста: она принимает контейнер (элемент) и вёрстку, которую требуется отрендерить в этот контейнер.
-
-// В файле src/main.js напишите код для отрисовки созданных компонентов. Компоненты «Меню», «Список задач», «Фильтры», «Load more» отрисовываются 1 раз. Компонент «Форма редактирования задачи» отрисовывается 1 раз и должен располагаться самым первым в списке. Компонент «Карточка задачи» отрисовывается 3 раза.
-
-// Откройте в браузере файл index.html. Все компоненты должны быть корректно отрисованы.
 
 const mainNode = document.querySelector(`.main`);
 const mainControlNode = document.querySelector(`.main__control`);
@@ -465,9 +442,9 @@ render(getBoardComponent(), mainNode);
 
 const boardNode = mainNode.querySelector(`.board`);
 const boardTasksNode = mainNode.querySelector(`.board__tasks`);
-render(getTaskEditTemplate(), boardTasksNode);
+render(getTaskEditHTML(), boardTasksNode);
 for (let i = 0; i < 3; i++) {
-  render(getTaskTemplate(), boardTasksNode);
+  render(getTaskHTML(), boardTasksNode);
 }
 
-render(getShowmoreButton(), boardNode);
+render(getShowmoreButtonHTML(), boardNode);
